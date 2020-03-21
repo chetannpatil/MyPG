@@ -1,0 +1,148 @@
+<html>
+<head>
+<title>OwnerHeader</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.navbar {
+    overflow: hidden;
+    background-color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    font-size: 16px;    
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+    background-color: maroon;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+	color:white;
+    background-color: black;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color:white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: maroon;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+</style>
+</head>
+
+
+
+<body>
+
+
+<div class="navbar">
+  <a href="back">HOME</a>
+  
+  <div class="dropdown">
+    <button class="dropbtn">IN-MATES
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+	<a href="openAddInMateView.owner">ADD IN-MATE</a>
+	  <a href="viewAllInMates.owner">VIEW IN-MATE</a>      
+     </div>
+  </div> 
+
+   <div class="dropdown">
+    <button class="dropbtn">ROOMS 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+	 <a href="openAddARoom.owner">ADD ROOM</a>
+      <a href="viewRooms.owner">VIEW ROOMS</a>
+      </div>
+
+  </div> 
+
+
+
+      <div class="dropdown">
+    <button class="dropbtn">RENT
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="viewDues.owner">VIEW ALL DUES</a>
+      </div>
+    </div>
+
+         <div class="dropdown">
+    <button class="dropbtn">COMPLAINT-BOX
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="openComplaintBox.owner">OPEN COMPLAINT-BOX</a>
+     </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropbtn">MyPG
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">    
+      <a href="viewPGDetails.owner">VIEW PG DETAILS</a>
+      <a href="openViewAndEditPGDetails.owner">EDIT PG DETAILS</a>
+    </div>
+  </div>
+
+ <div class="dropdown">
+    <button class="dropbtn">ME
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">    
+      <a href="viewOwnerDetails.owner">SHOW MY DETAILS</a>
+      <a href="openEditOwnerDetails.owner">EDIT MY DETAILS</a>
+    </div>
+  </div>
+        <a href="logOut">LOG-OUT</a>
+
+</div>
+
+
+
+
+
+</body>
+</html> 

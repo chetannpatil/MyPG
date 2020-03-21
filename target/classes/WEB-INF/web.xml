@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>MyPG</display-name>
+  <session-config>
+  <session-timeout>10</session-timeout>
+  </session-config>
+  <servlet>
+    <servlet-name>dispatcher</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/spring-servlet.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>dispatcher</servlet-name>
+    <url-pattern>/</url-pattern>
+   </servlet-mapping>
+  
+  <filter>
+    <display-name>OwnerAccessFilter</display-name>
+    <filter-name>OwnerAccessFilter</filter-name>
+    <filter-class>com.mypg.controller.OwnerAccessFilter</filter-class>
+  </filter>
+  
+  <filter-mapping>
+    <filter-name>OwnerAccessFilter</filter-name>
+    <url-pattern>*.owner</url-pattern>
+   </filter-mapping>
+  
+</web-app>
+
+
+
+
