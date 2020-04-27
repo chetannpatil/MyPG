@@ -10,7 +10,7 @@
 <title>WelcomePage</title>
 </head>
 <body bgcolor="white">
-<p style=" font-family:monospace;  font-size: 70pt; " align="center"   >....</p>
+<p style=" font-family:monospace;  font-size: 70pt; " align="center"   >MyPG</p>
 <div class="division">
 </div>
    <h1 ><marquee>${signOutMessage }</marquee> </h1>              
