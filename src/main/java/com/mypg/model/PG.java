@@ -3,12 +3,14 @@ package com.mypg.model;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -33,6 +35,9 @@ public final class PG implements Comparable<PG>
 	//@NotNull(message="You have to reveal where you have constructed your PG")
 	//@NotBlank(message="You have to reveal where you have constructed your PG")
 	//@Null(message="You have to reveal where you have constructed your PG")
+	//@NotEmpty(message="You have to reveal where you have constructed your PG")
+	//all @NotNull @NotBlank @Null @NotEmpty dosenot work
+	@Embedded
 	private Address address ;
 	
 	private int totalRooms;
@@ -85,6 +90,10 @@ public final class PG implements Comparable<PG>
 
 	public PGOwner getMyOwner() {
 		return myOwner;
+	}
+
+	public void setTotalRooms(int totalRooms) {
+		this.totalRooms = totalRooms;
 	}
 
 	public PG(long pgId, String name, Address address, int totalRooms, Set<Room> rooms, Set<Complaint> complaintBox,

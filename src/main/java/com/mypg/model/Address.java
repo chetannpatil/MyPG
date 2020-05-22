@@ -4,14 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Embeddable;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.mypg.util.PGAddressCanNotBeEmptyException;
+
 
 //@Entity
 @Embeddable
@@ -22,7 +20,7 @@ public class Address
 	//@GeneratedValue
 	private long addresId;
 	
-	//@NotEmpty
+	@NotEmpty(message = "hosue nu neeeded")
 	private String houseNumber;
 	
 	//@NotEmpty
@@ -35,10 +33,10 @@ public class Address
 	private String state;
 	
 	//@Column(in)
-	//@NotEmpty
+	@NotEmpty(message = "country nu neeeded")
 	private String country ;
 	
-	//@NotEmpty
+	@NotEmpty(message = "pin nu neeeded")
 	private String pin;
 
 

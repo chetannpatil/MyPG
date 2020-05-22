@@ -12,4 +12,6 @@ public interface PGOwnerService
 	void delete(long pgOwnerId);
 	List<PGOwner> loadAllPGOwners();
 	PGOwner findPGOwner(String phoneNumber,String password);
+	 PGOwner findPGOwnerByPhoneNumber(String phoneNumber);
+
 }

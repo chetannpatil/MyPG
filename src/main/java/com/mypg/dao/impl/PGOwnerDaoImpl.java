@@ -81,4 +81,18 @@ public class PGOwnerDaoImpl implements PGOwnerDao
 		}
 	}
 
+	@Override
+	public PGOwner findPGOwnerByPhoneNumber(String phoneNumber)
+	{
+		System.out.println("PGOwnerDaoImpl  findPGOwnerByPhoneNumber ");
+		Query query = getSession().createQuery(" from PGOwner where phoneNumber = :ph");
+		query.setParameter("ph", phoneNumber);
+		List<PGOwner> pgOwnerList = (List<PGOwner> ) query.list();
+
+		if(pgOwnerList == null || pgOwnerList.size() == 0)
+			return null ;
+		else
+			return pgOwnerList.get(0);
+	}
+
 }

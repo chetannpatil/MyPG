@@ -132,46 +132,23 @@ public class PGHomeController
 					throw new PasswordMissMatchException(errorStr);
 				}
 				// check for duplicate owner here
-				List<PGOwner> pgOwnersList =  pgOwnerService.loadAllPGOwners();
-				if(pgOwnersList != null)
-				{
-					for(PGOwner pgOwner:pgOwnersList)
-					{
-						if(pgOwner.getPhoneNumber().equals(pgOwnerBean.getPhoneNumber()))
-								{
-							throw new DuplicateOwnerException("A account allready exist  with same phone number = "+pgOwnerBean.getPhoneNumber());
-								}
-					}
-				}	
+				PGOwner foundPGOwnerByPhoneNumber = pgOwnerService.findPGOwnerByPhoneNumber(pgOwnerBean.getPhoneNumber());
 				
-			/*	List<PGOwner> pgOwnersList =  pgOwnerService.loadAllPGOwners();
-				if(pgOwnersList != null)
+				if(foundPGOwnerByPhoneNumber != null)
 				{
-					for(PGOwner pgOwner:pgOwnersList)
-					{
-						System.out.println("");
-						System.out.println("for pgOwner = ");
-						System.out.println(pgOwner);
-						System.out.println("");
-						//System.out.println("yes samepg and same phono");
-						System.out.println("exist pg = "+pgOwnerBean.getMyPG());
-						System.out.println("db pg = "+pgOwner.getMyPG());
-						System.out.println("");
-						System.out.println("exist phno = "+pgOwnerBean.getPhoneNumber());
-						System.out.println("db phono = "+pgOwner.getPhoneNumber());
-					if( ( pgOwner.getMyPG().equals(pgOwnerBean.getMyPG())) && ( pgOwner.getPhoneNumber().equals(pgOwnerBean.getPhoneNumber() )))
-								{
-						System.out.println("");
-						System.out.println("yes samepg and same phono");
-						System.out.println("exist pg = "+pgOwnerBean.getMyPG());
-						System.out.println("db pg = "+pgOwner.getMyPG());
-						System.out.println("");
-						System.out.println("exist phno = "+pgOwnerBean.getPhoneNumber());
-						System.out.println("db phono = "+pgOwner.getPhoneNumber());
-							   throw new DuplicateOwnerException("You have allready created account for same PG");
-								}
-					}
-				}*/
+					throw new DuplicateOwnerException("A account allready exist  with same phone number = "+pgOwnerBean.getPhoneNumber());
+
+				}
+				
+				/*
+				 * List<PGOwner> pgOwnersList = pgOwnerService.loadAllPGOwners();
+				 * if(pgOwnersList != null) { for(PGOwner pgOwner:pgOwnersList) {
+				 * if(pgOwner.getPhoneNumber().equals(pgOwnerBean.getPhoneNumber())) { throw new
+				 * DuplicateOwnerException("A account allready exist  with same phone number = "
+				 * +pgOwnerBean.getPhoneNumber()); } } }
+				 */	
+				
+		
 				//do not create a pgOwnerbean now
 				////pgOwnerService.create(pgOwnerBean);
 				//redirect to crate pg page
@@ -243,45 +220,7 @@ public class PGHomeController
 				
 				
 				//add myPg to PGownerBean coll now
-				//pgOwnerBean.setMyPG(pgBean);
-				//if(pgOwnerBean.addAPG(pgBean)
-				
-				//do not check for duplicate owner here
-			/*	List<PGOwner> pgOwnersList =  pgOwnerService.loadAllPGOwners();
-				if(pgOwnersList != null)
-				{
-					for(PGOwner pgOwner:pgOwnersList)
-					{
-						System.out.println("");
-						System.out.println("for pgOwner = ");
-						System.out.println(pgOwner);
-						System.out.println("");
-						//System.out.println("yes samepg and same phono");
-						System.out.println("exist pg = "+pgOwnerBean.getMyPG());
-						System.out.println("db pg = "+pgOwner.getMyPG());
-						System.out.println("");
-						System.out.println("exist phno = "+pgOwnerBean.getPhoneNumber());
-						System.out.println("db phono = "+pgOwner.getPhoneNumber());
-					if( ( pgOwner.getMyPG().equals(pgOwnerBean.getMyPG())) && ( pgOwner.getPhoneNumber().equals(pgOwnerBean.getPhoneNumber() )))
-								{
-						System.out.println("");
-						System.out.println("yes samepg and same phono");
-						System.out.println("exist pg = "+pgOwnerBean.getMyPG());
-						System.out.println("db pg = "+pgOwner.getMyPG());
-						System.out.println("");
-						System.out.println("exist phno = "+pgOwnerBean.getPhoneNumber());
-						System.out.println("db phono = "+pgOwner.getPhoneNumber());
-						
-						//create throwable string
-						String duplicatePGErrorMessageStr = "Hello "+pgOwnerBean.getFirstName()+" you have already "
-								+ "account with same phone number = "+pgOwnerBean.getPhoneNumber()+" at same PG address = "
-										+ " "+pgBean.getAddress();
-						duplicatePGErrorMessageStr = duplicatePGErrorMessageStr+" So please create another PG with different address[ your same phone number will be considered]";
-							   throw new DuplicateOwnerException(duplicatePGErrorMessageStr);
-								}
-					}
-				}*/
-				
+							
 				//check for duplicate Pg 
 				List<PG> pgList = pgService.loadAllPGs();
 				boolean isItDuplicatePG = isItDuplicatePG(pgList,pgBean);
@@ -297,25 +236,7 @@ public class PGHomeController
 					throw new DuplicatePGException(duplicatePGErrorMessageStr);
 				}
 				
-				/*List<PG> pgList = pgService.loadAllPGs();
-				if(pgList != null)
-				{
-					for(PG pg :pgList)
-					{
-						if(pgBean.getAddress().equals(pg.getAddress()))
-						{
-							Address address = pgBean.getAddress() ;
-							String addressStr = address.getHouseNumber()+" "+address.getStreet()
-							                   +" "+address.getDisrtict()+" "+address.getState()+" "+address.getCountry()
-							                   +" "+address.getPin();
-							String duplicatePGErrorMessageStr = "Hello "+pgOwnerBean.getFirstName()+", some one has already "
-									+ "constructed a PG at same address = "+addressStr+", so pls enter your PG's address";
-											
-							throw new DuplicatePGException(duplicatePGErrorMessageStr);
-						}
-					}
-				}*/
-				//add pgstrtdat eto pg
+		    	//add pgstrtdat eto pg
 				pgBean.setPgStartedDate(new Date());
 				//set mypg for owner
 				pgOwnerBean.setMyPG(pgBean);
@@ -411,8 +332,9 @@ public class PGHomeController
 	}
 	
 	
-	//logIn
-	@RequestMapping("/logIn")
+	//logIn 
+	//login must be POST where as logout mist be DELETE
+	@RequestMapping(value = "/logIn")
 	public String logIn(@RequestParam("phoneNumber") String phoneNumber,@RequestParam("password") String password,Model m,HttpSession hs)
 	{
 		try
@@ -1205,16 +1127,20 @@ public class PGHomeController
 	
 	//viewOwnerDetails
 	@RequestMapping(value="/viewOwnerDetails")
-	public String viewOwnerDetails(Model m,HttpSession hs)
+	public String viewOwnerDetails(Model m)
 	{
 		try
-		{
-			PGOwner pgOwnerBean = (PGOwner) hs.getAttribute("pgOwnerBean");
-			m.addAttribute("pgOwnerBean",pgOwnerBean);
+		{   
+			//since user is alredy logged in no need to retrieve pgowerbean from session
+			//PGOwner pgOwnerBean = (PGOwner) hs.getAttribute("pgOwnerBean");
+			
+			//since pgOwnerbean avilable in session no need to add to model
+			//m.addAttribute("pgOwnerBean",pgOwnerBean);
 			return "ViewOwnerDetails";
 		}
 		catch (Exception e)
 		{
+			e.printStackTrace();
 			m.addAttribute("errorMessage", e.getLocalizedMessage());
 			return "Error";
 		}

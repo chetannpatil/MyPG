@@ -52,14 +52,14 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
                    <value>com.mypg.model.PG</value>
                    <value>com.mypg.model.Room</value>
                    <value>com.mypg.model.PGOwner</value>
-                 
+<!--                    <value>com.mypg.model.Address</value> -->
               </list>
       </property>
   <property name="hibernateProperties">
       <props>
            <prop key="hibernate.dialect">${database.dialect}</prop>
            <prop key="hibernate.hbm2ddl.auto">update</prop>
-           <prop key="hibernate.show_sql">false</prop>
+           <prop key="hibernate.show_sql">true</prop>
       </props>
   </property>
  </bean>

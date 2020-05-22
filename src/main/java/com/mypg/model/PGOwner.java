@@ -3,6 +3,7 @@ package com.mypg.model;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -42,6 +43,7 @@ public class PGOwner
 	
 	private String aadhaarNumber ;
 	
+	@Embedded
     private Address address;
 	
     @DateTimeFormat(pattern="dd/MM/yyyy")
